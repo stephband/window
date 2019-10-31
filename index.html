@@ -4,115 +4,133 @@
 	<meta charset="utf-8" />
 	<meta name="author" content="" />
 	<meta name="description" content="" />
-	
-	<title>Bolt</title>
-	
+
+	<title>Window</title>
+
 	<script>document.documentElement.className = 'js';</script>
-	
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
-	<!-- Force latest IE rendering engine & Chrome Frame -->
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<!-- Make IE recognise HTML5 elements for styling -->
-	<!--[if lte IE 8]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<noscript>
-		<strong>Warning!</strong>
-		Your browser does not support HTML5 so some elements on this page are simulated using JScript. Unfortunately your browser has JScript disabled. Please enable it in order to display this page.
-	</noscript>
-	<![endif]-->
-	<!-- Disable image toolbar in IE6 -->
-	<!--[if lte IE 6]><meta http-equiv="imagetoolbar" content="no" /><![endif]-->
-	
+
 	<link rel="icon" type="image/png" href="images/favicon.png" />
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-	
-	<link rel="stylesheet" href="css/bolt.normalise.css" />
-	<link rel="stylesheet" href="css/bolt.typography.css" />
-	<link rel="stylesheet" href="css/bolt.typography.15_24.css" />
-	<link rel="stylesheet" href="css/bolt.forms.css" />
-	<link rel="stylesheet" href="css/bolt.classes.css" />
-	<link rel="stylesheet" href="css/bolt.theme.css" />
-	<!--[if (lt IE 9)&(!IEMobile)]>
-	<link rel="stylesheet" href="/css/bolt.layout.32em.css" media="all" />
-	<link rel="stylesheet" href="/css/bolt.layout.48em.css" media="all" />
-	<![endif]-->
-	<!--[if lte IE 8]><link rel="stylesheet" href="/css/bolt.ie.css" /><![endif]-->
-	<!--[if IE 8]><link rel="stylesheet" href="/css/bolt.ie8.css" /><![endif]-->
-	<!--[if IE 7]><link rel="stylesheet" href="/css/bolt.ie7.css" /><![endif]-->
-	<!--[if IE 6]><link rel="stylesheet" href="/css/bolt.ie6.css" /><![endif]-->
+
+	<link rel="stylesheet" href="../bolt/css/html.css" />
+
 	<style>
+		:root {
+			height: 100%;
+		}
+
+		body {
+			display: flex;
+			min-height: 100%;
+		}
+
 		b {
 			font-weight: normal;
 			color: rgb(200,100,0);
 		}
+
+		pre {
+			font-family: 'Menlo', 'Andale Mono', monospace;
+		}
+
+        .guide {
+            font-family: 'Menlo', 'Andale Mono', monospace;
+            font-size: 0.875em;
+            color: #666666;
+        }
+
+        .x-guide {
+            text-align: center;
+            padding-top: 0.125rem;
+            border-top: 1px solid rgba(0,0,0,0.333333);
+        }
+
+        .y-guide {
+            padding-top: 48vh;
+            padding-left: 0.125rem;
+            border-left: 1px solid rgba(0,0,0,0.333333);
+        }
+
+        body > .guide {
+            position: absolute;
+        }
+
+        body > .x-guide {
+            top: 15px;
+            left: 0;
+        }
+
+        body > .y-guide {
+            top: 0;
+            left: 15px;
+        }
 	</style>
 </head>
 
 <body>
-	<div class="layer middle">
+
 <pre>window: {
-    devicePixelRatio:   <b>{{ ratio }}</b>
-    orientation:        <b>{{ orientation }}</b>
-    font-size:          <b>{{ em }}</b>
-    width:              <b>{{ width }}</b> / <b>{{ emWidth }}</b>
-    height:             <b>{{ height }}</b> / <b>{{ emHeight }}</b>
-    inner/outerWidth:   <b>{{ innerWidth }}</b> / <b>{{ outerWidth }}</b>
-    inner/outerHeight:  <b>{{ innerHeight }}</b> / <b>{{ outerHeight }}</b>
+    devicePixelRatio: <b id="devicePixelRatio"></b>
+    orientation:      <b id="orientation"></b>
+    font-size:        <b id="em"></b> (<b>1rem</b>)
+    innerWidth:       <b id="innerWidth"></b> (<b id="emInnerWidth"></b>)
+    innerHeight:      <b id="innerHeight"></b> (<b id="emInnerHeight"></b>)
+    outerWidth:       <b id="outerWidth"></b> (<b id="emOuterWidth"></b>)
+    outerHeight:      <b id="outerHeight"></b> (<b id="emOuterHeight"></b>)
 }
 
-window.screen: {
-    width/availWidth:   <b>{{ screenWidth }}</b> / <b>{{ availWidth }}</b>
-    height/availHeight: <b>{{ screenHeight }}</b> / <b>{{ availHeight }}</b>
+screen: {
+    width:            <b id="screenWidth"></b> (<b id="emScreenWidth"></b>)
+    height:           <b id="screenHeight"></b> (<b id="emScreenHeight"></b>)
+    availWidth:       <b id="availWidth"></b> (<b id="emAvailWidth"></b>)
+    availHeight:      <b id="availHeight"></b> (<b id="emAvailHeight"></b>)
 }</pre>
-	</div>
-	
-	<script>
-		// Function.prototype.bind is the ES5 feature with by far the worst support. Use it
-		// to roughly detect ES5. http://kangax.github.com/es5-compat-table/
-		!Function.prototype.bind && document.write(unescape('%3Cscript src="res/es5-shim/es5-shim.min.js"%3E%3C/script%3E'));
-	</script>
-	<script src="res/ios-orientationchange-fix/ios-orientationchange-fix.js"></script>
-	<script src="js/jquery-2.0.3.js"></script>
-	<script src="js/jquery.render.js"></script>
+
+<div class="x-guide guide" id="widthGuide" style="width: 100%;">100% <b id="widthPercent"></b></div>
+<div class="x-guide guide" id="widthGuideVw" style="width: 100vw; top: 60px;">100vw <b id="widthVw"></b></div>
+<div class="y-guide guide" id="heightGuide" style="height: 100%;">100%<br/><b id="heightPercent"></b></div>
+<div class="y-guide guide" id="heightGuideVh" style="height: 100vh; left: 60px;">100vh<br/><b id="heightVh"></b></div>
 
 	<script>
-		var win = jQuery(window),
-		    doc = jQuery(document),
-		    elem = jQuery(document.documentElement),
-		    view, template;
-
-		function setup() {
-			view = jQuery('pre');
-			template = view.html();
-		}
-		
 		function refresh() {
-			view.html(jQuery.render(template, {
-				ratio: window.devicePixelRatio,
-				orientation: '' + window.orientation,
-				em: elem.css('font-size'),
-				width: win.width() + 'px',
-				height: win.height() + 'px',
-				emWidth: win.width() / parseFloat(elem.css('font-size')) + 'em',
-				emHeight: win.height() / parseFloat(elem.css('font-size')) + 'em',
-				innerWidth:  window.innerWidth,
-				innerHeight: window.innerHeight,
-				outerWidth:  window.outerWidth,
-				outerHeight: window.outerHeight,
-				screenWidth: window.screen.width,
-				screenHeight: window.screen.height,
-				availWidth: window.screen.availWidth,
-				availHeight: window.screen.availHeight
-			}));
+			var rem = parseInt(getComputedStyle(document.documentElement).fontSize, 10);
+
+			document.getElementById('devicePixelRatio').innerHTML = window.devicePixelRatio;
+			document.getElementById('orientation').innerHTML = '' + window.orientation;
+			document.getElementById('em').innerHTML = rem;
+			document.getElementById('innerWidth').innerHTML =  window.innerWidth;
+			document.getElementById('innerHeight').innerHTML = window.innerHeight;
+			document.getElementById('emInnerWidth').innerHTML = window.innerWidth / rem + 'rem';
+			document.getElementById('emInnerHeight').innerHTML = window.innerHeight / rem + 'rem';
+			document.getElementById('outerWidth').innerHTML =  window.outerWidth;
+			document.getElementById('outerHeight').innerHTML = window.outerHeight;
+			document.getElementById('emOuterWidth').innerHTML = window.outerWidth / rem + 'rem';
+			document.getElementById('emOuterHeight').innerHTML = window.outerHeight / rem + 'rem';
+			document.getElementById('screenWidth').innerHTML = window.screen.width;
+			document.getElementById('screenHeight').innerHTML = window.screen.height;
+			document.getElementById('emScreenWidth').innerHTML = window.screen.width / rem + 'rem';
+			document.getElementById('emScreenHeight').innerHTML = window.screen.height / rem + 'rem';
+			document.getElementById('availWidth').innerHTML = window.screen.availWidth;
+			document.getElementById('availHeight').innerHTML = window.screen.availHeight;
+			document.getElementById('emAvailWidth').innerHTML = window.screen.availWidth / rem + 'rem';
+			document.getElementById('emAvailHeight').innerHTML = window.screen.availHeight / rem + 'rem';
+
+            var widthPercent  = document.getElementById('widthGuide').clientWidth;
+            var widthVw       = document.getElementById('widthGuideVw').clientWidth;
+            var heightPercent = document.getElementById('heightGuide').clientHeight;
+            var heightVh      = document.getElementById('heightGuideVh').clientHeight;
+
+            document.getElementById('widthPercent').innerHTML = widthPercent;
+            document.getElementById('widthVw').innerHTML = widthVw;
+            document.getElementById('heightPercent').innerHTML = heightPercent;
+            document.getElementById('heightVh').innerHTML = heightVh;
 		}
-		
-		doc
-		.on('ready', setup)
-		.on('ready', refresh);
-		
-		win
-		.on('orientationchange', refresh)
-		.on('resize', refresh);
+
+		window.addEventListener('orientationchange', refresh);
+		window.addEventListener('resize', refresh);
+		window.addEventListener('load', refresh);
 	</script>
 </body>
 </html>

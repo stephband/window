@@ -71,7 +71,6 @@
 
 <pre>window: {
 	devicePixelRatio: <b id="devicePixelRatio"></b>
-	orientation:  <b id="orientation"></b>
 	font-size:    <b id="em"></b> (<b>1rem</b>)
 	innerWidth:   <b id="innerWidth"></b> (<b id="emInnerWidth"></b>)
 	innerHeight:  <b id="innerHeight"></b> (<b id="emInnerHeight"></b>)
@@ -84,6 +83,10 @@ screen: {
 	height:       <b id="screenHeight"></b> (<b id="emScreenHeight"></b>)
 	availWidth:   <b id="availWidth"></b> (<b id="emAvailWidth"></b>)
 	availHeight:  <b id="availHeight"></b> (<b id="emAvailHeight"></b>)
+}
+
+document: {
+	scrollingElement: <b id="scrollingElement"></b>
 }</pre>
 
 <div class="x-guide guide" id="widthGuide" style="width: 100%;">100% <b id="widthPercent"></b></div>
@@ -96,7 +99,6 @@ screen: {
 			var rem = parseInt(getComputedStyle(document.documentElement).fontSize, 10);
 
 			document.getElementById('devicePixelRatio').innerHTML = window.devicePixelRatio;
-			document.getElementById('orientation').innerHTML = '' + window.orientation;
 			document.getElementById('em').innerHTML = rem;
 			document.getElementById('innerWidth').innerHTML =  window.innerWidth;
 			document.getElementById('innerHeight').innerHTML = window.innerHeight;
@@ -114,6 +116,9 @@ screen: {
 			document.getElementById('availHeight').innerHTML = window.screen.availHeight;
 			document.getElementById('emAvailWidth').innerHTML = window.screen.availWidth / rem + 'rem';
 			document.getElementById('emAvailHeight').innerHTML = window.screen.availHeight / rem + 'rem';
+            document.getElementById('scrollingElement').textContent = document.scrollingElement ?
+                '<' + document.scrollingElement.tagName.toLowerCase() + '>' :
+                document.scrollingElement ;
 
 			var widthPercent  = document.getElementById('widthGuide').clientWidth;
 			var widthVw       = document.getElementById('widthGuideVw').clientWidth;

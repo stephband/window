@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<meta name="author" content="" />
-	<meta name="description" content="" />
+    <meta charset="utf-8" />
+    <meta name="author" content="" />
+    <meta name="description" content="" />
 
-	<title>Window</title>
+    <title>Window</title>
 
-	<script>document.documentElement.className = 'js';</script>
+    <script>document.documentElement.className = 'js';</script>
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
 
-	<link rel="stylesheet" href="../bolt/css/html.css" />
+    <link rel="stylesheet" href="../bolt/css/html.css" />
 
-	<style>
-		:root {
-			height: 100%;
-		}
+    <style>
+        :root {
+            height: 100%;
+        }
 
-		body {
-			display: flex;
-			min-height: 100%;
-		}
+        body {
+            display: flex;
+            min-height: 100%;
+        }
 
-		b {
-			font-weight: normal;
-			color: rgb(200,100,0);
-		}
+        b {
+            font-weight: normal;
+            color: rgb(200,100,0);
+        }
 
-		pre {
-			font-family: 'Menlo', 'Andale Mono', monospace;
-			font-size: 0.75em;
-		}
+        pre {
+            font-family: 'Menlo', 'Andale Mono', monospace;
+            font-size: 0.75em;
+        }
 
         .guide {
             font-family: 'Menlo', 'Andale Mono', monospace;
@@ -64,29 +64,29 @@
             top: 0;
             left: 15px;
         }
-	</style>
+    </style>
 </head>
 
 <body>
 
 <pre>window: {
-	devicePixelRatio: <b id="devicePixelRatio"></b>
-	font-size:    <b id="em"></b> (<b>1rem</b>)
-	innerWidth:   <b id="innerWidth"></b> (<b id="emInnerWidth"></b>)
-	innerHeight:  <b id="innerHeight"></b> (<b id="emInnerHeight"></b>)
-	outerWidth:   <b id="outerWidth"></b> (<b id="emOuterWidth"></b>)
-	outerHeight:  <b id="outerHeight"></b> (<b id="emOuterHeight"></b>)
+    devicePixelRatio: <b id="devicePixelRatio"></b>
+    font-size:    <b id="em"></b> (<b>1rem</b>)
+    innerWidth:   <b id="innerWidth"></b> (<b id="emInnerWidth"></b>)
+    innerHeight:  <b id="innerHeight"></b> (<b id="emInnerHeight"></b>)
+    outerWidth:   <b id="outerWidth"></b> (<b id="emOuterWidth"></b>)
+    outerHeight:  <b id="outerHeight"></b> (<b id="emOuterHeight"></b>)
 }
 
 screen: {
-	width:        <b id="screenWidth"></b> (<b id="emScreenWidth"></b>)
-	height:       <b id="screenHeight"></b> (<b id="emScreenHeight"></b>)
-	availWidth:   <b id="availWidth"></b> (<b id="emAvailWidth"></b>)
-	availHeight:  <b id="availHeight"></b> (<b id="emAvailHeight"></b>)
+    width:        <b id="screenWidth"></b> (<b id="emScreenWidth"></b>)
+    height:       <b id="screenHeight"></b> (<b id="emScreenHeight"></b>)
+    availWidth:   <b id="availWidth"></b> (<b id="emAvailWidth"></b>)
+    availHeight:  <b id="availHeight"></b> (<b id="emAvailHeight"></b>)
 }
 
 document: {
-	scrollingElement: <b id="scrollingElement"></b>
+    scrollingElement: <b id="scrollingElement"></b>
 }</pre>
 
 <div class="x-guide guide" id="widthGuide" style="width: 100%;">100% <b id="widthPercent"></b></div>
@@ -94,57 +94,57 @@ document: {
 <div class="y-guide guide" id="heightGuide" style="height: 100%;">100%<br/><b id="heightPercent"></b></div>
 <div class="y-guide guide" id="heightGuideVh" style="height: 100vh; left: 60px;">100vh<br/><b id="heightVh"></b></div>
 
-	<script>
-		function refresh() {
-			var rem = parseInt(getComputedStyle(document.documentElement).fontSize, 10);
+    <script>
+        function refresh() {
+            var rem = parseInt(getComputedStyle(document.documentElement).fontSize, 10);
 
-			document.getElementById('devicePixelRatio').innerHTML = window.devicePixelRatio;
-			document.getElementById('em').innerHTML = rem;
-			document.getElementById('innerWidth').innerHTML =  window.innerWidth;
-			document.getElementById('innerHeight').innerHTML = window.innerHeight;
-			document.getElementById('emInnerWidth').innerHTML = window.innerWidth / rem + 'rem';
-			document.getElementById('emInnerHeight').innerHTML = window.innerHeight / rem + 'rem';
-			document.getElementById('outerWidth').innerHTML =  window.outerWidth;
-			document.getElementById('outerHeight').innerHTML = window.outerHeight;
-			document.getElementById('emOuterWidth').innerHTML = window.outerWidth / rem + 'rem';
-			document.getElementById('emOuterHeight').innerHTML = window.outerHeight / rem + 'rem';
-			document.getElementById('screenWidth').innerHTML = window.screen.width;
-			document.getElementById('screenHeight').innerHTML = window.screen.height;
-			document.getElementById('emScreenWidth').innerHTML = window.screen.width / rem + 'rem';
-			document.getElementById('emScreenHeight').innerHTML = window.screen.height / rem + 'rem';
-			document.getElementById('availWidth').innerHTML = window.screen.availWidth;
-			document.getElementById('availHeight').innerHTML = window.screen.availHeight;
-			document.getElementById('emAvailWidth').innerHTML = window.screen.availWidth / rem + 'rem';
-			document.getElementById('emAvailHeight').innerHTML = window.screen.availHeight / rem + 'rem';
+            document.getElementById('devicePixelRatio').innerHTML = window.devicePixelRatio;
+            document.getElementById('em').innerHTML = rem;
+            document.getElementById('innerWidth').innerHTML =  window.innerWidth;
+            document.getElementById('innerHeight').innerHTML = window.innerHeight;
+            document.getElementById('emInnerWidth').innerHTML = window.innerWidth / rem + 'rem';
+            document.getElementById('emInnerHeight').innerHTML = window.innerHeight / rem + 'rem';
+            document.getElementById('outerWidth').innerHTML =  window.outerWidth;
+            document.getElementById('outerHeight').innerHTML = window.outerHeight;
+            document.getElementById('emOuterWidth').innerHTML = window.outerWidth / rem + 'rem';
+            document.getElementById('emOuterHeight').innerHTML = window.outerHeight / rem + 'rem';
+            document.getElementById('screenWidth').innerHTML = window.screen.width;
+            document.getElementById('screenHeight').innerHTML = window.screen.height;
+            document.getElementById('emScreenWidth').innerHTML = window.screen.width / rem + 'rem';
+            document.getElementById('emScreenHeight').innerHTML = window.screen.height / rem + 'rem';
+            document.getElementById('availWidth').innerHTML = window.screen.availWidth;
+            document.getElementById('availHeight').innerHTML = window.screen.availHeight;
+            document.getElementById('emAvailWidth').innerHTML = window.screen.availWidth / rem + 'rem';
+            document.getElementById('emAvailHeight').innerHTML = window.screen.availHeight / rem + 'rem';
             document.getElementById('scrollingElement').textContent = document.scrollingElement ?
                 '<' + document.scrollingElement.tagName.toLowerCase() + '>' :
                 document.scrollingElement ;
 
-			var widthPercent  = document.getElementById('widthGuide').clientWidth;
-			var widthVw       = document.getElementById('widthGuideVw').clientWidth;
-			var heightPercent = document.getElementById('heightGuide').clientHeight;
-			var heightVh      = document.getElementById('heightGuideVh').clientHeight;
+            var widthPercent  = document.getElementById('widthGuide').clientWidth;
+            var widthVw       = document.getElementById('widthGuideVw').clientWidth;
+            var heightPercent = document.getElementById('heightGuide').clientHeight;
+            var heightVh      = document.getElementById('heightGuideVh').clientHeight;
 
-			document.getElementById('widthPercent').innerHTML = widthPercent;
-			document.getElementById('widthVw').innerHTML = widthVw;
-			document.getElementById('heightPercent').innerHTML = heightPercent;
-			document.getElementById('heightVh').innerHTML = heightVh;
-		}
+            document.getElementById('widthPercent').innerHTML = widthPercent;
+            document.getElementById('widthVw').innerHTML = widthVw;
+            document.getElementById('heightPercent').innerHTML = heightPercent;
+            document.getElementById('heightVh').innerHTML = heightVh;
+        }
 
-		window.addEventListener('orientationchange', refresh);
-		window.addEventListener('resize', refresh);
-		window.addEventListener('load', refresh);
+        window.addEventListener('orientationchange', refresh);
+        window.addEventListener('resize', refresh);
+        window.addEventListener('load', refresh);
 
-		document.addEventListener('mousedown', function(e) { console.log(e.type, e.timeStamp / 1000); });
-		document.addEventListener('mousemove', function(e) { console.log(e.type, e.timeStamp / 1000); });
-		document.addEventListener('mouseup', function(e) { console.log(e.type, e.timeStamp / 1000); });
-		document.addEventListener('click', function(e) { console.log(e.type, e.timeStamp / 1000); });
-		document.addEventListener('keydown', function(e) { console.log(e.type, e.timeStamp / 1000); });
-		document.addEventListener('keyup', function(e) { console.log(e.type, e.timeStamp / 1000); });
-		document.addEventListener('keypress', function(e) { console.log(e.type, e.timeStamp / 1000); });
-		document.addEventListener('touchstart', function(e) { console.log(e.type, e.timeStamp / 1000); });
-		document.addEventListener('touchmove', function(e) { console.log(e.type, e.timeStamp / 1000); });
-		document.addEventListener('touchend', function(e) { console.log(e.type, e.timeStamp / 1000); });
-	</script>
+        document.addEventListener('mousedown', function(e) { console.log(e.type, e.timeStamp / 1000); });
+        //document.addEventListener('mousemove', function(e) { console.log(e.type, e.timeStamp / 1000); });
+        document.addEventListener('mouseup', function(e) { console.log(e.type, e.timeStamp / 1000); });
+        document.addEventListener('click', function(e) { console.log(e.type, e.timeStamp / 1000); });
+        document.addEventListener('keydown', function(e) { console.log(e.type, e.timeStamp / 1000); });
+        document.addEventListener('keyup', function(e) { console.log(e.type, e.timeStamp / 1000); });
+        document.addEventListener('keypress', function(e) { console.log(e.type, e.timeStamp / 1000); });
+        document.addEventListener('touchstart', function(e) { console.log(e.type, e.timeStamp / 1000); });
+        document.addEventListener('touchmove', function(e) { console.log(e.type, e.timeStamp / 1000); });
+        document.addEventListener('touchend', function(e) { console.log(e.type, e.timeStamp / 1000); });
+    </script>
 </body>
 </html>

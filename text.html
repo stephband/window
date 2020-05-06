@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="" />
+    <meta name="description" content="" />
+
+    <title>Print</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+    html, body { margin: 0; padding: 0; }
+    * { box-sizing: border-box; }
+    div { position: relative; }
+    div::before { content: ''; position: absolute; top: 0; left: 0; height: 100%; width: 1px; background-color: black; }
+    .em  { display: inline-block; width: 1em;  height: 1em;   background-color: #5FAB9A; }
+    .lh  { display: inline-block; width: 1lh;  height: 1lh;   background-color: #485b68; }
+    .rem { display: inline-block; width: 1rem; height: 1rem;  background-color: #5E7F8F; }
+    .cm  { display: inline-block; width: 1cm;  height: 1cm;   background-color: #779aab; }
+    .pt  { display: inline-block; width: 10pt; height: 10pt;   background-color: #837b76; }
+    .px  { display: inline-block; width: 10px; height: 10px;  background-color: #63ACDD; }
+    .vw  { display: inline-block; width: 10vw;  height: 10vw; background-color: #f5a623; }
+    .vh  { display: inline-block; width: 10vh;  height: 10vh; background-color: #FE267E; }
+    .vmin { display: inline-block; width: 10vmin;  height: 10vmin; background-color: #8B572A; }
+
+    /* Not Safari */
+    @page {
+        margin: 0.5cm;
+    }
+
+    @media print {
+        body {
+            font-size: 1cm;
+        }
+    }
+
+    /* Safari 10.1+ print-only hack */
+    @media not all and (min-resolution:.001dpcm) { @media print {
+        body::before { content: 'Safari'; }
+    }}
+
+    /* Chrome and FireFox print (must come before Firefox hack) */
+    @media print and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) {
+        body::before { content: 'Chrome'; }
+    }
+
+    /* Firefox print only (overrides Chrome hack)  */
+    @media print { @-moz-document url-prefix() {
+        @page {
+            margin: 0cm;
+        }
+
+        html {
+
+        }
+
+        body::before { content: 'FireFox'; }
+    }}
+    </style>
+</head>
+
+<body>
+    <h4>meta</h4>
+    <pre>width=device-width, initial-scale=1</pre>
+
+    <h4>style</h4>
+    <pre>@page {
+    margin: 0.5cm;
+}
+
+@media print {
+    body { font-size: 1cm; }
+}
+
+@media not all and (min-resolution:.001dpcm) { @media print {
+    .vw { display: inline-block; width: 5vw; height: 5vw; background-color: #f5a623; }
+}}</pre>
+
+    <h4>1rem (80)</h4>
+     <div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div
+    ><div class="rem"></div>
+
+    <h4>1em (40)</h4>
+     <div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div
+    ><div class="em"></div>
+
+    <h4>1cm (40)</h4>
+    <div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div
+    ><div class="cm"></div>
+
+    <h4>10px (80)</h4>
+    <div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div
+    ><div class="px"></div>
+
+    <h4>10vw (20)</h4>
+    <div class="vw"></div
+    ><div class="vw"></div
+    ><div class="vw"></div
+    ><div class="vw"></div
+    ><div class="vw"></div
+    ><div class="vw"></div
+    ><div class="vw"></div
+    ><div class="vw"></div
+    ><div class="vw"></div
+    ><div class="vw"></div>
+
+    <p style="font-size: 1em;">Crunchum ipsum dolor sit coder void, constructor function, sed do while loop python orientation semi colon incident. Undefinitum functiona non est! Duis aute irure indent tabs or spaces velit esse cilium buntum how crunchy duntum. Excepteur tranquilis syntax error memorandum qui officia nostrud operating system alertus. Standards code est pulchra on chromium et foxus sed souvent suckum in internet explorum.</p>
+
+    <p style="font-size: 2em;">Crunchum ipsum dolor sit coder void, constructor function, sed do while loop python orientation semi colon incident. Undefinitum functiona non est! Duis aute irure indent tabs or spaces velit esse cilium buntum how crunchy duntum. Excepteur tranquilis syntax error memorandum qui officia nostrud operating system alertus. Standards code est pulchra on chromium et foxus sed souvent suckum in internet explorum.</p>
+</body>
+</html>

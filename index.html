@@ -168,6 +168,8 @@ event: {
         }
 
         function refreshEvent(e) {
+            console.log(e.type, e.timeStamp);
+
             document.getElementById('type').innerHTML      = e.type;
             document.getElementById('timeStamp').innerHTML = e.timeStamp;
 

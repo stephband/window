@@ -186,6 +186,8 @@ event: {
         document.addEventListener('touchstart', refreshEvent);
         document.addEventListener('touchmove', refreshEvent);
         document.addEventListener('touchend', refreshEvent);
+
+        refreshEvent({ type: '', timeStamp: '' });
     </script>
 </body>
 </html>

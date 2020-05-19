@@ -168,7 +168,7 @@ event: {
         }
 
         function refreshEvent(e) {
-            console.log(e.type, e.timeStamp);
+            console.log(e.type, e.timeStamp, e.pointerType, e.pointerId);
 
             document.getElementById('type').innerHTML      = e.type;
             document.getElementById('timeStamp').innerHTML = e.timeStamp;

@@ -189,7 +189,10 @@ event: {
             updateElem('shiftKey', 'shiftKey', e);
             updateElem('metaKey', 'metaKey', e);
 
-            e.preventDefault();
+            // Neuter mouse events if this is pointer event
+            if (e.type.startsWith('pointer')) {
+                e.preventDefault();
+            }
         }
 
         document.addEventListener('mousedown', refreshEvent);

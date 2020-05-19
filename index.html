@@ -95,7 +95,14 @@ event: {
     clientX:      <b id="clientX"></b></span><span id="line-clientY">
     clientY:      <b id="clientY"></b></span><span id="line-pageX">
     screenX:      <b id="pageX"></b></span><span id="line-pageY">
-    screenY:      <b id="pageY"></b></span><span id="line-key">
+    screenY:      <b id="pageY"></b></span><span id="line-pointerType">
+    pointerType:  <b id="pointerType"></b></span><span id="line-pointerId">
+    pointerId:    <b id="pointerId"></b></span><span id="line-pointerWidth">
+    width:        <b id="pointerWidth"></b></span><span id="line-pointerHeight">
+    height:       <b id="pointerHeight"></b></span><span id="line-pointerTiltX">
+    tiltX:        <b id="pointerTiltX"></b></span><span id="line-pointerTiltY">
+    tiltY:        <b id="pointerTiltY"></b></span><span id="line-pointerPressure">
+    pressure:     <b id="pointerPressure"></b></span><span id="line-key">
     key:          <b id="key"></b></span><span id="line-code">
     code:         <b id="code"></b></span><span id="line-altKey">
     altKey:       <b id="altKey"></b></span><span id="line-ctrlKey">
@@ -168,12 +175,21 @@ event: {
             updateElem('clientY', 'clientY', e);
             updateElem('pageX', 'pageX', e);
             updateElem('pageY', 'pageY', e);
+            updateElem('pointerType', 'pointerType', e);
+            updateElem('pointerId', 'pointerId', e);
+            updateElem('pointerWidth', 'width', e);
+            updateElem('pointerHeight', 'height', e);
+            updateElem('pointerTiltX', 'tiltX', e);
+            updateElem('pointerTiltY', 'tiltY', e);
+            updateElem('pointerPressure', 'pressure', e);
             updateElem('key', 'key', e);
             updateElem('code', 'code', e);
             updateElem('altKey', 'altKey', e);
             updateElem('ctrlKey', 'ctrlKey', e);
             updateElem('shiftKey', 'shiftKey', e);
             updateElem('metaKey', 'metaKey', e);
+
+            e.preventDefault();
         }
 
         document.addEventListener('mousedown', refreshEvent);
@@ -186,8 +202,11 @@ event: {
         document.addEventListener('touchstart', refreshEvent);
         document.addEventListener('touchmove', refreshEvent);
         document.addEventListener('touchend', refreshEvent);
+        document.addEventListener('pointerdown', refreshEvent);
+        document.addEventListener('pointermove', refreshEvent);
+        document.addEventListener('pointerup', refreshEvent);
 
-        refreshEvent({ type: '', timeStamp: '' });
+        refreshEvent({ type: '', timeStamp: '', preventDefault: function() {} });
     </script>
 </body>
 </html>

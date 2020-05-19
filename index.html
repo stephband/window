@@ -91,11 +91,17 @@ document: {
 
 event: {
     type:         <b id="type"></b>
-    timeStamp:    <b id="timeStamp"></b>
-    clientX:      <b id="clientX"></b>
-    clientY:      <b id="clientY"></b>
-    screenX:      <b id="pageX"></b>
-    screenY:      <b id="pageY"></b>
+    timeStamp:    <b id="timeStamp"></b><span id="line-clientX">
+    clientX:      <b id="clientX"></b></span><span id="line-clientY">
+    clientY:      <b id="clientY"></b></span><span id="line-pageX">
+    screenX:      <b id="pageX"></b></span><span id="line-pageY">
+    screenY:      <b id="pageY"></b></span><span id="line-key">
+    key:          <b id="key"></b></span><span id="line-code">
+    code:         <b id="code"></b></span><span id="line-altKey">
+    altKey:       <b id="altKey"></b></span><span id="line-ctrlKey">
+    ctrlKey:      <b id="ctrlKey"></b></span><span id="line-metaKey">
+    metaKey:      <b id="metaKey"></b></span><span id="line-shiftKey">
+    shiftKey:     <b id="shiftKey"></b></span>
 }</pre>
 
 <div class="x-guide guide" id="widthGuide" style="width: 100%;">100% <b id="widthPercent"></b></div>
@@ -144,13 +150,30 @@ event: {
         window.addEventListener('resize', refresh);
         window.addEventListener('load', refresh);
 
+        function updateElem(id, name, e) {
+            if (e[name] === undefined) {
+                document.getElementById('line-' + id).hidden = true;
+            }
+            else {
+                document.getElementById('line-' + id).hidden = false;
+                document.getElementById(id).innerHTML   = e[name];
+            }
+        }
+
         function refreshEvent(e) {
             document.getElementById('type').innerHTML      = e.type;
             document.getElementById('timeStamp').innerHTML = e.timeStamp;
-            document.getElementById('clientX').innerHTML   = e.clientX;
-            document.getElementById('clientY').innerHTML   = e.clientY;
-            document.getElementById('pageX').innerHTML     = e.pageX;
-            document.getElementById('pageY').innerHTML     = e.pageY;
+
+            updateElem('clientX', 'clientX', e);
+            updateElem('clientY', 'clientY', e);
+            updateElem('pageX', 'pageX', e);
+            updateElem('pageY', 'pageY', e);
+            updateElem('key', 'key', e);
+            updateElem('code', 'code', e);
+            updateElem('altKey', 'altKey', e);
+            updateElem('ctrlKey', 'ctrlKey', e);
+            updateElem('shiftKey', 'shiftKey', e);
+            updateElem('metaKey', 'metaKey', e);
         }
 
         document.addEventListener('mousedown', refreshEvent);

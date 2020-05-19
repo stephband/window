@@ -87,6 +87,15 @@ screen: {
 
 document: {
     scrollingElement: <b id="scrollingElement"></b>
+}
+
+event: {
+    type:         <b id="type"></b>
+    timeStamp:    <b id="timeStamp"></b>
+    clientX:      <b id="clientX"></b>
+    clientY:      <b id="clientY"></b>
+    screenX:      <b id="pageX"></b>
+    screenY:      <b id="pageY"></b>
 }</pre>
 
 <div class="x-guide guide" id="widthGuide" style="width: 100%;">100% <b id="widthPercent"></b></div>
@@ -135,16 +144,25 @@ document: {
         window.addEventListener('resize', refresh);
         window.addEventListener('load', refresh);
 
-        document.addEventListener('mousedown', function(e) { console.log(e.type, e.timeStamp / 1000); });
-        //document.addEventListener('mousemove', function(e) { console.log(e.type, e.timeStamp / 1000); });
-        document.addEventListener('mouseup', function(e) { console.log(e.type, e.timeStamp / 1000); });
-        document.addEventListener('click', function(e) { console.log(e.type, e.timeStamp / 1000); });
-        document.addEventListener('keydown', function(e) { console.log(e.type, e.timeStamp / 1000); });
-        document.addEventListener('keyup', function(e) { console.log(e.type, e.timeStamp / 1000); });
-        document.addEventListener('keypress', function(e) { console.log(e.type, e.timeStamp / 1000); });
-        document.addEventListener('touchstart', function(e) { console.log(e.type, e.timeStamp / 1000); });
-        document.addEventListener('touchmove', function(e) { console.log(e.type, e.timeStamp / 1000); });
-        document.addEventListener('touchend', function(e) { console.log(e.type, e.timeStamp / 1000); });
+        function refreshEvent(e) {
+            document.getElementById('type').innerHTML      = e.type;
+            document.getElementById('timeStamp').innerHTML = e.timeStamp;
+            document.getElementById('clientX').innerHTML   = e.clientX;
+            document.getElementById('clientY').innerHTML   = e.clientY;
+            document.getElementById('pageX').innerHTML     = e.pageX;
+            document.getElementById('pageY').innerHTML     = e.pageY;
+        }
+
+        document.addEventListener('mousedown', refreshEvent);
+        document.addEventListener('mousemove', refreshEvent);
+        document.addEventListener('mouseup', refreshEvent);
+        document.addEventListener('click', refreshEvent);
+        document.addEventListener('keydown', refreshEvent);
+        document.addEventListener('keyup', refreshEvent);
+        document.addEventListener('keypress', refreshEvent);
+        document.addEventListener('touchstart', refreshEvent);
+        document.addEventListener('touchmove', refreshEvent);
+        document.addEventListener('touchend', refreshEvent);
     </script>
 </body>
 </html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="" />
+    <meta name="description" content="" />
+
+    <title>Window</title>
+
+    <script>document.documentElement.className = 'js';</script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <link rel="stylesheet" href="../bolt/css/html.css" />
+
+    <style>
+        :root {
+            height: 100%;
+        }
+
+        body {
+            display: grid;
+            grid-template-columns: 100vw;
+            grid-template-rows: 100vh 100vh;
+            align-content: stretch;
+            align-items: center;
+            justify-content: stretch;
+            justify-items: center;
+        }
+
+        b {
+            font-weight: normal;
+            color: #2991d0;
+        }
+
+        pre {
+            font-family: 'Menlo', 'Andale Mono', monospace;
+            font-size: 0.75em;
+        }
+    </style>
+
+    <script>
+        var eventtime = 0;
+        
+        function printScript(string) {
+            var content   = scripttemplate.content.cloneNode(true);
+            var time = window.performance.now();
+            if (time < eventtime) {
+                content.getElementById('timestamp').style.color = 'red';
+            }
+            eventtime = time;
+            content.getElementById('timestamp').textContent = (time / 1000).toFixed(3);
+            content.getElementById('log').textContent = string;
+            content.querySelectorAll('id').forEach((n) => n.removeAttribute('id'));
+            output.appendChild(content);
+        }
+
+        function printEvent(e) {
+            var content   = eventtemplate.content.cloneNode(true);
+            var time = e.timeStamp;
+            if (time < eventtime) {
+                content.getElementById('timestamp').style.color = '#d60058';
+            }
+            
+            content.getElementById('timestamp').textContent = time / 1000 >= 10 ?
+                (time / 1000).toFixed(2) :
+                (time / 1000).toFixed(3) ;
+            content.getElementById('log').innerHTML = 
+                '   <b' + (time < eventtime ? ' style="color:#d60058;"' : '') +'>' + e.type + '</b> ' + (
+                e.target === document ? 'document' :
+                e.target === window   ? 'window' :
+                e.target === img ? '&lt;img src=""…" /&gt;' :
+                e.target.outerHTML 
+            );
+            content.querySelectorAll('id').forEach((n) => n.removeAttribute('id'));
+            output.appendChild(content);
+            eventtime = time;
+        }
+        //img.addEventListener('load', printEvent);
+        window.addEventListener('DOMContentLoaded', printEvent);
+        window.addEventListener('load', printEvent);
+        window.addEventListener('scroll', (function(t) {
+            return (e) => {
+                // Avoid printing huge streams of scroll events
+                if (t < e.timeStamp - 40) { printEvent(e); }
+                t = e.timeStamp;                
+            }
+        })(-Infinity));
+        window.addEventListener('hashchange', printEvent);
+        window.addEventListener('popstate', printEvent);
+        window.addEventListener('resize', printEvent);
+    </script>
+</head>
+
+<body>
+    <template id="eventtemplate">event   <b id="timestamp"></b>  <span id="log"></span>
+</template>
+
+    <template id="scripttemplate">script  <b id="timestamp"></b>  <span id="log"></span>
+</template>
+
+    <img src="../bolt/images/wireframe.svg" onload="printEvent(event)" id="img" />
+
+    <pre id="output">type    time   #  target
+-------------------------
+</pre>
+
+    <script type="module" async src="./modules/print-script-async.js"></script>
+    
+    <script type="module" async>
+        import noop from '../fn/modules/noop.js';
+        noop();
+        printScript('   <script type="module" async> import …');
+    </script>
+
+    <script type="module" src="./modules/print-script.js"></script>
+
+    <script type="module">
+        import noop from '../fn/modules/noop.js';
+        noop();
+        printScript('3  <script type="module"> import …');
+    </script>
+
+    <script type="module">
+        printScript('4  <script type="module">');
+    </script>
+
+    <script>
+        printScript('1  <script>');
+    </script>
+</body>
+</html>
